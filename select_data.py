@@ -9,7 +9,7 @@ Returns a list of these new rows.
 If there are no matches, an empty list is returned;
 multiple matches returns a list length = # of matches.
 '''
-def check_match(row,sequences):
+def check_match(row,sequences,lang):
     sentence = row["sentence"].split()
     lemmas = row["lemmas"]
     tags = row["POS_tags"]
@@ -27,7 +27,13 @@ def check_match(row,sequences):
             # subset of tags matches sequence
             if tags[i:(i+len(seq))] == seq:
                 matching_row = row.copy()
-                matching_row["target_tokens"] = sentence[i:i+len(seq)]
+                if lang == 'ar':
+                    bw = row["BW"]
+                    if type(bw) != list:
+                        bw = literal_eval(bw)
+                    matching_row["target_tokens"] = bw[i:i+len(seq)]
+                else:
+                    matching_row["target_tokens"] = sentence[i:i+len(seq)]
                 matching_row["target_lemmas"] = lemmas[i:i+len(seq)]
                 matching_row["target_tags"] = tags[i:i+len(seq)]
                 matches.append(matching_row)
@@ -39,10 +45,10 @@ def check_match(row,sequences):
 with only the rows that have a match. Multiple matches per sentence is
 possible, resulting df has one row for each unique match.
 '''
-def find_sequences(df,sequences):
+def find_sequences(df,sequences,lang):
     dataset = []
     for index, row in df.iterrows():
-        matches = check_match(row,sequences)
+        matches = check_match(row,sequences,lang)
         for row in matches:
             dataset.append(row)
         # progress check
