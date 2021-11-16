@@ -11,7 +11,7 @@ This repository is currently in progress, and has the following capabilities at 
 Result: Data table (= `pandas` DataFrame output as a .csv) readable by R for running logistic regression analysis.
 
 Optional: 
-* Run flexibility.py to create frequency dictionaries of nouns and adjective, and filter your data by including only pairs with flexible adjectives.
+* Run flexibility.py to create frequency dictionaries of nouns and adjectives, and filter dataset by including only pairs with flexible adjectives.
 * Run add_fixedeffects.py to create separate columns for noun lemmas and adjective lemmas so they can be easily accessed in a mixed-effects model as random effects.
 
 Helper scripts can be found in [/language-scripts](https://github.com/katherineblake/language-scripts).
