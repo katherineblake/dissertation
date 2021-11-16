@@ -6,13 +6,8 @@ This repository is currently in progress, and has the following capabilities at 
 1. Create a `pandas` dataframe of validated corpus data from a CommonVoice download, with client_id, audio_filename, sentence.
 2. Generate part-of-speech tags for sentences, using `spaCy` (default) or `stanza`.
 3. Subset the data to include only sentences with specified target sequences (e.g., 'NOUN ADJ' and 'ADJ NOUN', as was the case for this thesis).
-
-*In progress*
-
-4. Add phonological forms and other information to the dataset using a user-provided lexicon, which must be `.csv` or `.tsv` and have at least (orthographic) "word" and "phonological_form" columns. The code supports `WikiPron` formatting and Italian- and French-specific lexicon formatting ([phonitalia.csv](https://link.springer.com/article/10.3758/s13428-013-0400-8) and [lexique.tsv](http://www.lexique.org/), respectively).
+4. Add phonological forms and other information to the dataset using a user-provided lexicon, which must be `.csv` or `.tsv` and have at least (orthographic) "word" and "phonological_form" columns. The code supports `WikiPron` formatting, and Italian- and French-specific lexicon formatting ([phonitalia.csv](https://link.springer.com/article/10.3758/s13428-013-0400-8) and [lexique.tsv](http://www.lexique.org/), respectively).
 5. Code target sequences for syntactic order preferences motivated by phonological markedness constraints.
-6. Output results of a logistic regression predicting one of the orders of the target sequences using phonological markedness constraints (and others) as fixed effects.
+Result: Data table (= pandas DataFrame output as a .csv) readable by R for running logistic regression analysis.
 
-Other capabilites:
-- Get all unique phones in a dataset.
-- Bag-of-words implementation using PMI. *In-progress*
+Helper scripts can be found in [/language-scripts](https://github.com/katherineblake/language-scripts).
