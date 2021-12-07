@@ -13,6 +13,7 @@ Result: Data table (= `pandas` DataFrame output as a .csv) readable by R for run
 Optional: 
 * Run flexibility.py to create frequency dictionaries of nouns and adjectives, and filter dataset by including only pairs with flexible adjectives.
 * Run add_fixedeffects.py to create separate columns for noun lemmas and adjective lemmas so they can be easily accessed in a mixed-effects model as random effects.
+* Run describe.py to generate descriptive statistics of adjectives and nouns, including word length and number of constraint violations based on cons.tsv file.
 * Run generate_bow.py to create a Bag-of-words model of adjective lemmas, separately for prenominal position and postnominal position and measure the cosine similarity between the two (e.g., _big_ N vs. N _big_) to empirically measure semantic difference between the same adjective in different positions w.r.t the noun.
 
 Helper scripts can be found in [/language-scripts](https://github.com/katherineblake/language-scripts).
