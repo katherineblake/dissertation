@@ -1,10 +1,12 @@
 '''
-Takes a dataframe and adds two new columns:
+Takes a dataframe and adds three new columns:
 ADJECTIVE: containing the adjective lemma in the pair
 NOUN: containing the noun lemma in the pair
+FIXED: if relative frequency is equivalent to 1.0 or 0.0,
+meaning pair is 100% prenominal or postnominal
 
 Usage:
-python add_fixedeffects.py dataset_it.csv
+python add_randomeffects.py dataset.csv
 '''
 
 
@@ -13,11 +15,10 @@ import pandas as pd
 from ast import literal_eval
 
 
-def add_effects(df):
+def add_wordeffects(df):
     '''
     Add columns for ADJ lemma and N lemma.
     '''
-
     noun_col = []
     adj_col = []
 
@@ -47,6 +48,24 @@ def add_effects(df):
 
     return df
 
+def add_stricteffect(df):
+    '''
+    Add column for strict ordering.
+    '''
+    strict_col = []
+    for index,row in df.iterrows():
+        relative_frequency = row["relative_frequency"]
+        if (relative_frequency != 1.0) and (relative_frequency != 0.0):
+            strict = 0
+        else:
+            strict = 1
+
+        strict_col.append(strict)
+
+    df["FIXED"] = strict_col
+
+    return df
+
 
 if __name__ == "__main__":
 
@@ -57,7 +76,8 @@ if __name__ == "__main__":
 
     # read in data from file as pandas df
     df = pd.read_csv(args.input_file)
-    updated_df = add_effects(df)
+    updated_df = add_wordeffects(df)
+    updated_df = add_stricteffect(updated_df)
 
     # write to output file
     updated_df.to_csv(path_or_buf=f"updated_{args.input_file}", index=False)
