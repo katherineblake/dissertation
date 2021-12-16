@@ -224,6 +224,8 @@ else:
 Using dataset, which has target sequences with phonological forms,
 generate constraint values for each line as defined in constraint file.
 ''' 
+print("Coding data for phonological constraints...")
 con = read_constraint_file(args.constraints)
 constraints = add_constraints_to_df(dataset, con, args.lang)
 constraints.to_csv(path_or_buf=f"output_{lang}.csv", index=False)
+print("All done!")
